@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebServiceTest.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <style type="text/css">*{font-size:12px;}</style>
+	<script type="text/javascript">
+		function testCourse(){
+			var cct = $("#courseCT");
+			cct.html("");
+			$.ajax({
+				url:"/dgdx2/test/webservce",
+				type:"post",
+				data:{userName:"陆勇2",password:"123123",retype:"json"},
+				dataType:"json",
+				success:function(res){
+					alert(res);
+					if(typeof(res) != "object"){
+						alert(res);
+						return;
+					}
+						
+					if(!res){
+						alert("没有数据");
+						return;
+					}
+					
+					cct.append("<div style='margin-top:20px;'>以下是网络学院提供的课程</div>");
+					for(var i=0;i<res.lis.length;i++){
+						var cours = res.lis[i];
+						cct.append("<div><input type='checkbox'/>"+cours.coursetitle+"</div>");
+					}
+				},
+				error:function(er){
+					alert(er+"  error");
+					 
+				}
+			});
+			
+		}
+		function testSynOrganization(){
+			var cct = $("#courseCT");
+			cct.html("");
+			$.ajax({
+				url:"/dgdx2/test/webservce",
+				type:"post",
+				data:{userName:"陆勇2",password:"123123",methodName:"testOrganization",retype:"json"},
+				//dataType:"json",
+				success:function(res){
+					alert(res);
+					
+					if(typeof(res) != "object"){
+						alert(res);
+						return;
+					}
+						
+					if(!res){
+						alert("没有数据");
+						return;
+					}
+					
+					cct.append("<div style='margin-top:20px;'>以下是网络学院提供的课程</div>");
+					for(var i=0;i<res.lis.length;i++){
+						var cours = res.lis[i];
+						cct.append("<div><input type='checkbox'/>"+cours.coursetitle+"</div>");
+					}
+				},
+				error:function(er){
+					alert(er+"error"+er.responsXML+"   "+er.responsText);
+					 
+				}
+			});
+		}
+		
+		function testStudentToUser(){
+			var cct = $("#courseCT");
+			cct.html("");
+			$.ajax({
+				url:"/dgdx2/test/webservce",
+				type:"post",
+				data:{userName:"陆勇2",password:"123123",methodName:"testStudent",retype:"json"},
+				//dataType:"json",
+				success:function(res){
+					alert(res);
+					cct.html(res);
+					if(typeof(res) != "object"){
+						alert(res);
+						return;
+					}
+						
+					if(!res){
+						alert("没有数据");
+						return;
+					}
+					
+					cct.append("<div style='margin-top:20px;'>以下是网络学院提供的课程</div>");
+					for(var i=0;i<res.lis.length;i++){
+						var cours = res.lis[i];
+						cct.append("<div><input type='checkbox'/>"+cours.coursetitle+"</div>");
+					}
+				},
+				error:function(er){
+					alert(er+"error"+er.responsXML+"   "+er.responsText);
+					 
+				}
+			});	
+		}
+		
+		function openClassSynInput(){			
+			$("#corseInputCT").show();
+			
+		}
+		function testClassSyn(){
+			var cct = $("#courseCT");
+			cct.html("");
+			$.ajax({
+				url:"/dgdx2/test/webservce",
+				type:"post",
+				data:{courseName:$("#courseName").val(),userName:"陆勇2",password:"123123",methodName:"testClassSyn",retype:"json"},
+				//dataType:"json",
+				success:function(res){
+					alert(res);
+					cct.html(res);
+					if(typeof(res) != "object"){
+						alert(res);
+						return;
+					}
+					if(!res){
+						alert("没有数据");
+						return;
+					}									
+				},
+				error:function(er){
+					alert(er+"error"+er.responsXML+"   "+er.responsText);
+					 
+				}
+			});	
+		}		
+		
+		
+		function testGetScore(){
+			var cct = $("#courseCT");
+			cct.html("");
+			$.ajax({
+				url:"/dgdx2/test/webservce",
+				type:"post",
+				data:{courseName:$("#courseName").val(),userName:"陆勇2",password:"123123",methodName:"testGetScore",retype:"json"},
+				//dataType:"json",
+				success:function(res){
+					alert(res);
+					cct.html(res);
+					if(typeof(res) != "object"){
+						alert(res);
+						return;
+					}
+					if(!res){
+						alert("没有数据");
+						return;
+					}									
+				},
+				error:function(er){
+					alert(er+"error"+er.responsXML+"   "+er.responsText);
+					 
+				}
+			});	
+		}	
+		function testGetCredit(){
+			var cct = $("#courseCT");
+			cct.html("");
+			$.ajax({
+				url:"/dgdx2/test/webservce",
+				type:"post",
+				data:{courseName:$("#courseName").val(),userName:"陆勇2",password:"123123",methodName:"testGetCredit",retype:"json"},
+				//dataType:"json",
+				success:function(res){
+					alert(res);
+					cct.html(res);
+					if(typeof(res) != "object"){
+						alert(res);
+						return;
+					}
+					if(!res){
+						alert("没有数据");
+						return;
+					}									
+				},
+				error:function(er){
+					alert(er+"error"+er.responsXML+"   "+er.responsText);
+					 
+				}
+			});	
+		}
+		function refrenshPage(){
+			window.location.href=window.location.href;
+		}
+		
+	</script>
+  </head>
+  
+  <body>
+    <div style="position:absolute;right:5px;top:5px;"><button onclick="refrenshPage()">刷新</button></div>
+	
+	<p/>
+	以下是自行开发的网各学院提供的webservice测试
+	<br/><hr/>
+	
+	<a href="javascript:void(0)" onclick="testSynOrganization()">同步组织架构测试</a><p/>
+	<a href="javascript:void(0)" onclick="testCourse()">获得网络学院的课程</a><p/>
+	<a href="javascript:void(0)" onclick="testStudentToUser()">同步学员到网络学院用户</a><p/>
+	<div>
+		<a href="javascript:void(0)" onclick="openClassSynInput()">班次同步课程测试</a>
+		<div id="corseInputCT" style="display:none;">
+			请输入测试课程名：<input type="text" name="courseName" id="courseName"/><br/>
+			<input type="button" value="同步" onclick="testClassSyn()"/>
+		</div><p/>
+		<a href="javascript:void(0)" onclick="testGetScore()">获得学员的考试成绩</a><p/>
+		<a href="javascript:void(0)" onclick="testGetCredit()">获得学员的学分</a><p/>
+	</div><p/>
+		
+	<p>
+	处理结果
+	</p>
+	<div id="courseCT" style="font-size:12px;"></div>
+  </body>
+</html>
